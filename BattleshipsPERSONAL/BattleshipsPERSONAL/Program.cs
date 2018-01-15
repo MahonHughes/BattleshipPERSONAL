@@ -10,6 +10,7 @@ namespace BattleshipsPERSONAL
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("TEST");
         }
     }
 }
