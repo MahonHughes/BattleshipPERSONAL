@@ -8,6 +8,7 @@ namespace Test_of_increace
 {
     class Program
     {
+        
 
         static void BuildAll()
         {
@@ -106,6 +107,7 @@ namespace Test_of_increace
         }
         static void Main(string[] args)
         {
+            Console.WriteLine("Teapots");
 
             while (true)
             {
