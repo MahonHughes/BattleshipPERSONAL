@@ -4,129 +4,113 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp10
+namespace Test_of_increace
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void BuildAll()
         {
-            //Console.ForegroundColor = ConsoleColor.Blue;
-            //Console.BackgroundColor = ConsoleColor.White;
-            //Console.Clear();
-            //^Changes whole console colour and foreground colour now.
             int size = 0;
-            string[,] hitMatrix = new string[12, 12];
-
-            for (int i = 0; i <= 11; i++)
+            string input = Console.ReadLine();
+            size = Convert.ToInt32(input);
+            if (size == 0)
             {
-                for (int j = 0; j <= 11; j++)
-                {
-                    hitMatrix[i, j] = (" ");
-                }
+                Console.WriteLine("Excuse me?");
+                System.Threading.Thread.Sleep(3000);
+                Console.WriteLine("Could you please leave?");
+                System.Threading.Thread.Sleep(5000);
+                //Console.Read();
+                size = 88888;
             }
-
-            int amountofbotes = 5;
-
-            do
-            {
-                Random generator = new Random();
-                int rand = generator.Next(0, 11);
-
-                Random generator2 = new Random();
-                int rand2 = generator.Next(0, 11);
-
-                hitMatrix[rand, rand2] = "#";
-
-                Random generator3 = new Random();
-                int direction = generator.Next(1, 4);
-
-                //  Random generator4 = new Random();
-                //int size = generator.Next(2, 5);
-
-                size = amountofbotes;
-                Console.WriteLine("Size" + size);
-
-                if (direction == 1)
-                {
-                    while (size > 0)
-                    {
-                        rand = rand + 1;
-                        hitMatrix[rand, rand2] = "#";
-                        size = size - 1;
-                    }
-                }
-                else if (direction == 2)
-                {
-                    while (size > 0)
-                    {
-                        rand = rand - 1;
-                        hitMatrix[rand, rand2] = "#";
-                        size = size - 1;
-                    }
-                }
-                else if (direction == 3)
-                {
-                    while (size > 0)
-                    {
-                        rand2 = rand2 + 1;
-                        hitMatrix[rand, rand2] = "#";
-                        size = size - 1;
-                    }
-                }
-
-                else if (direction == 4)
-                {
-                    while (size > 0)
-                    {
-                        rand2 = rand2 - 1;
-                        hitMatrix[rand, rand2] = "#";
-                        size = size - 1;
-
-                    }
-                }
-
-                amountofbotes = amountofbotes - 1;
-                Console.WriteLine("amount of boats" + amountofbotes);
-
-            } while (amountofbotes >= 0);
-
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            string pop = " ";
+            Console.Clear();
 
-            Console.WriteLine("    A   B   C   D   E   F   G   H   I   J   K   L");
-            Console.WriteLine("  ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓");
-
-            for (int i = 0; i <= 11; i++)
+            char letter = 'A';
+            Console.Write("    ");
+            for (var y = 0; y < size; y++)
             {
-                if (i < 9)
+                Console.Write(letter);
+                Console.Write("   ");
+                letter++;
+            }
+            Console.WriteLine("");
+            Console.Write("  ┏");
+            for (int a = 0; a < (size - 1); a++)
+            {
+                Console.Write("━━━");
+                Console.Write("┳");
+            }
+            Console.Write("━━━┓");
+
+            for (int b = 0; b < (size - 1); b++)
+            {
+                Console.WriteLine("");
+
+                if (b < 9)
                 {
-                    Console.Write(i + 1);
+                    Console.Write(b + 1);
                     Console.Write(" ");
                 }
                 else
                 {
-                    Console.Write(i + 1);
+                    Console.Write(b + 1);
                 }
-                for (int j = 0; j < 12; j++)
-                {
 
+                for (int c = 0; c < size; c++)
+                {
                     Console.Write("┃");
-                    Console.Write(" " + hitMatrix[i, j] + " ");
+                    Console.Write(" " + pop + " ");
                 }
 
                 Console.Write("┃");
-                Console.WriteLine(" ");
-
-                if (i < 11)
+                Console.WriteLine("");
+                Console.Write("  ┣");
+                for (int a = 0; a < (size - 1); a++)
                 {
-                    Console.WriteLine("  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫");
+                    Console.Write("━━━");
+                    Console.Write("╋");
                 }
-                else
-                {
-                    Console.WriteLine("  ┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛");
-                }
-
+                Console.Write("━━━┫");
             }
-            Console.Read();
+            Console.WriteLine("");
+            if (size <= 9)
+            {
+                Console.Write(size);
+                Console.Write(" ");
+            }
+            else
+            {
+                Console.Write(size);
+            }
+
+            for (int c = 0; c < size; c++)
+            {
+                Console.Write("┃");
+                Console.Write(" " + pop + " ");
+            }
+            Console.Write("┃");
+            Console.WriteLine("  ");
+            Console.Write("  ┗");
+            for (int a = 0; a < (size - 1); a++)
+            {
+                Console.Write("━━━");
+                Console.Write("┻");
+            }
+            Console.Write("━━━┛");
+
+            // ┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛
+
+            //Console.ReadLine();
+        }
+        static void Main(string[] args)
+        {
+
+            while (true)
+            {
+                BuildAll();
+            }
 
         }
     }
