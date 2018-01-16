@@ -8,7 +8,30 @@ namespace Test_of_increace
 {
     class Program
     {
+
         
+        static int safeIntInput(String message)
+        {
+            int Number = 0;
+            bool isRunning = true;
+            while (isRunning == true)
+            {
+                Console.WriteLine("");
+                Console.Write(message);
+                string stringToTest = Console.ReadLine();
+                bool res = int.TryParse(stringToTest, out Number);
+                if (res == false)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Invalid Input, please try again: ");
+                }
+                else
+                {
+                    isRunning = false;
+                }
+            }
+            return Number;
+        }
 
         static void BuildAll()
         {
