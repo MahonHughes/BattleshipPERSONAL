@@ -133,6 +133,22 @@ namespace Test_of_increace
 
             //Console.ReadLine();
         }
+
+
+        static void addMatix(int size, int numberOfBotes)
+        {
+            string[,] hitMatrix = new string[size, size];
+
+            for (int i = 0; i <= 11; i++)
+            {
+                for (int j = 0; j <= 11; j++)
+                {
+                    hitMatrix[i, j] = (" ");
+                }
+            }
+           
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Teapots");
