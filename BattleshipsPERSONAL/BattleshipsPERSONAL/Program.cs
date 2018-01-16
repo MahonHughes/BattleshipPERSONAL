@@ -235,6 +235,7 @@ namespace Test_of_increace
         static void Main(string[] args)
         {
             int size = 12;
+            string[,] hitMatrix = new string[size, size];
             string[,] selectMatrix = new string[size, size];
 
             for (int i = 0; i <= 11; i++)
