@@ -48,7 +48,6 @@ namespace Test_of_increace
                 size = 88888;
             }
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            string pop = " ";
             Console.Clear();
 
             char letter = 'A';
@@ -85,7 +84,6 @@ namespace Test_of_increace
                 for (int c = 0; c < size; c++)
                 {
                     Console.Write("┃");
-                    Console.Write(" " + pop + " ");
                     Console.Write(" ");
                     Console.BackgroundColor = backColorMatrix[c,b];
                     Console.ForegroundColor = textColorMatrix[c, b];
@@ -119,7 +117,7 @@ namespace Test_of_increace
             for (int c = 0; c < size; c++)
             {
                 Console.Write("┃");
-                Console.Write(" " + pop + " ");
+                Console.Write(" " + hitMatrix[c, size - 1] + " ");
             }
             Console.Write("┃");
             Console.WriteLine("  ");
