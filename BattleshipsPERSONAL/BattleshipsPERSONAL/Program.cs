@@ -86,6 +86,13 @@ namespace Test_of_increace
                 {
                     Console.Write("┃");
                     Console.Write(" " + pop + " ");
+                    Console.Write(" ");
+                    Console.BackgroundColor = backColorMatrix[c,b];
+                    Console.ForegroundColor = textColorMatrix[c, b];
+                    Console.Write(hitMatrix[c, b]);
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(" ");
                 }
 
                 Console.Write("┃");
