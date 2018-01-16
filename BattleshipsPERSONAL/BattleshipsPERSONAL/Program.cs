@@ -234,13 +234,23 @@ namespace Test_of_increace
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Teapots");
+            int size = 12;
+            string[,] selectMatrix = new string[size, size];
 
-            while (true)
+            for (int i = 0; i <= 11; i++)
             {
-                BuildAll();
+                for (int j = 0; j <= 11; j++)
+                {
+                    selectMatrix[i, j] = "O";
+                    hitMatrix[i, j] = "#";
+                }
             }
 
+
+            
+            
+            addShips(size, hitMatrix, selectMatrix);
+            Console.Read();
         }
     }
 }
