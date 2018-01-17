@@ -89,7 +89,9 @@ namespace Test_of_increace
                 }
                 else if (keyinfo.Key == ConsoleKey.Enter)
                 {
+                    int length = 5;
                     selectionType = "E";
+                    addShip(size, hitMatrix, selectMatrix, length);
                 }
                 else if (keyinfo.Key == ConsoleKey.Backspace)
                 {
