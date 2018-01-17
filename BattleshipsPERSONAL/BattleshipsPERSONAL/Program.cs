@@ -91,7 +91,7 @@ namespace Test_of_increace
                 {
                     int length = 5;
                     selectionType = "E";
-                    addShip(size, hitMatrix, selectMatrix, length);
+                    addShip(size, hitMatrix, selectMatrix, length, currentSelection);
                 }
                 else if (keyinfo.Key == ConsoleKey.Backspace)
                 {
