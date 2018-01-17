@@ -150,7 +150,7 @@ namespace Test_of_increace
             }
             Console.Write("━━━┓");
 
-            for (int b = 0; b < (size - 1); b++)
+            for (int b = 0; b < (size); b++)
             {
                 Console.WriteLine("");
 
@@ -175,35 +175,25 @@ namespace Test_of_increace
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write(" ");
                 }
-
-                Console.Write("┃");
-                Console.WriteLine("");
-                Console.Write("  ┣");
-                for (int a = 0; a < (size - 1); a++)
+                if (b < (size - 1))
                 {
-                    Console.Write("━━━");
-                    Console.Write("╋");
+                    Console.Write("┃");
+                    Console.WriteLine("");
+                    Console.Write("  ┣");
+                    for (int a = 0; a < (size - 1); a++)
+                    {
+                        Console.Write("━━━");
+                        Console.Write("╋");
+                    }
+                    Console.Write("━━━┫");
                 }
-                Console.Write("━━━┫");
+                else{
+                    Console.Write("┃");
+                }
             }
             Console.WriteLine("");
-            if (size <= 9)
-            {
-                Console.Write(size);
-                Console.Write(" ");
-            }
-            else
-            {
-                Console.Write(size);
-            }
-
-            for (int c = 0; c < size; c++)
-            {
-                Console.Write("┃");
-                Console.Write(" " + hitMatrix[c, size - 1] + " ");
-            }
-            Console.Write("┃");
-            Console.WriteLine("  ");
+            
+            
             Console.Write("  ┗");
             for (int a = 0; a < (size - 1); a++)
             {
