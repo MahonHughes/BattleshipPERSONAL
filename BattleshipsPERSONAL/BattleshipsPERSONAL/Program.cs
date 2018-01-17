@@ -40,10 +40,11 @@ namespace Test_of_increace
             int[] currentSelection = new int[2];
             currentSelection[0] = 5;
             currentSelection[1] = 5;
+            string selectionType = "X";
             while (true)
             {
 
-                selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                selectMatrix[currentSelection[0], currentSelection[1]] = selectionType;
 
                 BuildAll(12, hitMatrix, selectMatrix);
                 ConsoleKeyInfo keyinfo;
@@ -56,6 +57,7 @@ namespace Test_of_increace
                     //Console.WriteLine("Up");
                     if (currentSelection[1] >= 1){
                         currentSelection[1] = currentSelection[1] - 1;
+                        selectionType = "X";
                     }
                 }
                 else if (keyinfo.Key == ConsoleKey.DownArrow)
@@ -64,6 +66,7 @@ namespace Test_of_increace
                     if (currentSelection[1] < size - 1)
                     {
                         currentSelection[1] = currentSelection[1] + 1;
+                        selectionType = "X";
                     }
                 }
                 else if (keyinfo.Key == ConsoleKey.LeftArrow)
@@ -72,6 +75,7 @@ namespace Test_of_increace
                     if (currentSelection[0] > 0)
                     {
                         currentSelection[0] = currentSelection[0] - 1;
+                        selectionType = "X";
                     }
                 }
                 else if (keyinfo.Key == ConsoleKey.RightArrow)
@@ -80,9 +84,9 @@ namespace Test_of_increace
                     if (currentSelection[0] < size - 1)
                     {
                         currentSelection[0] = currentSelection[0] + 1;
+                        selectionType = "X";
                     }
                 }
-
 
                 for (int i = 0; i <= 11; i++)
                 {
@@ -117,6 +121,18 @@ namespace Test_of_increace
                     {
                         textColorMatrix[i, j] = ConsoleColor.Blue;
                         backColorMatrix[i, j] = ConsoleColor.White;
+                    }
+                    else if (selectMatrix[i, j] == "E")
+                    {
+                        textColorMatrix[i, j] = ConsoleColor.White;
+                        backColorMatrix[i, j] = ConsoleColor.DarkBlue;
+                        hitMatrix[i, j] = "#";
+                    }
+                    else if (selectMatrix[i, j] == "D")
+                    {
+                        textColorMatrix[i, j] = ConsoleColor.White;
+                        backColorMatrix[i, j] = ConsoleColor.DarkRed;
+                        hitMatrix[i, j] = " ";
                     }
                 }
             }
@@ -233,7 +249,7 @@ namespace Test_of_increace
                 for (int j = 0; j <= 11; j++)
                 {
                     selectMatrix[i, j] = "O";
-                    hitMatrix[i, j] = "#";
+                    hitMatrix[i, j] = " ";
                 }
             }
 
