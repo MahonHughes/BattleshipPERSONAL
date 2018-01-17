@@ -48,8 +48,8 @@ namespace Test_of_increace
 
                 BuildAll(12, hitMatrix, selectMatrix);
                 ConsoleKeyInfo keyinfo;
-                Console.WriteLine(currentSelection[0]);
-                Console.WriteLine(currentSelection[1]);
+                //Console.WriteLine(currentSelection[0]);
+                //Console.WriteLine(currentSelection[1]);
                 keyinfo = Console.ReadKey();
                 //Console.WriteLine(keyinfo.Key);
                 if (keyinfo.Key == ConsoleKey.UpArrow)
