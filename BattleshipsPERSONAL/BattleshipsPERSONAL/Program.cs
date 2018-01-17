@@ -241,9 +241,9 @@ namespace Test_of_increace
             currentSelection[1] = 5;
             string selectionType = "X";
 
-
             ConsoleKeyInfo keyinfo;
             keyinfo = Console.ReadKey();
+
             if (keyinfo.Key == ConsoleKey.UpArrow)
             {
                 Console.WriteLine("Up");
