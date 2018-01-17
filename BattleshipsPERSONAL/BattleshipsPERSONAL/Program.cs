@@ -281,7 +281,7 @@ namespace Test_of_increace
                 }
             }
 
-
+            BuildAll(size, hitMatrix, selectMatrix);
 
         }
 
