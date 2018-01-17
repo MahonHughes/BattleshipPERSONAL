@@ -71,7 +71,7 @@ namespace Test_of_increace
                     Console.WriteLine("Left");
                     if (currentSelection[0] > 0)
                     {
-                        currentSelection[0] = currentSelection[1] - 1;
+                        currentSelection[0] = currentSelection[0] - 1;
                     }
                 }
                 else if (keyinfo.Key == ConsoleKey.RightArrow)
