@@ -231,6 +231,57 @@ namespace Test_of_increace
             //Console.ReadLine();
         }
 
+        static void addShip(int size, string[,] hitMatrix, string[,] selectMatrix, int length)
+        {
+
+            int[] currentSelection = new int[2];
+            currentSelection[0] = 5;
+            currentSelection[1] = 5;
+            string selectionType = "X";
+
+
+            ConsoleKeyInfo keyinfo;
+            keyinfo = Console.ReadKey();
+            if (keyinfo.Key == ConsoleKey.UpArrow)
+            {
+                Console.WriteLine("Up");
+                if (currentSelection[1] >= 1)
+                {
+                    currentSelection[1] = currentSelection[1] - 1;
+                    selectionType = "X";
+                }
+            }
+            else if (keyinfo.Key == ConsoleKey.DownArrow)
+            {
+                Console.WriteLine("Down");
+                if (currentSelection[1] < size - 1)
+                {
+                    currentSelection[1] = currentSelection[1] + 1;
+                    selectionType = "X";
+                }
+            }
+            else if (keyinfo.Key == ConsoleKey.LeftArrow)
+            {
+                Console.WriteLine("Left");
+                if (currentSelection[0] > 0)
+                {
+                    currentSelection[0] = currentSelection[0] - 1;
+                    selectionType = "X";
+                }
+            }
+            else if (keyinfo.Key == ConsoleKey.RightArrow)
+            {
+                Console.WriteLine("Right");
+                if (currentSelection[0] < size - 1)
+                {
+                    currentSelection[0] = currentSelection[0] + 1;
+                    selectionType = "X";
+                }
+            }
+
+
+
+        }
 
         static void addMatix(int size, int numberOfBotes)
         {
