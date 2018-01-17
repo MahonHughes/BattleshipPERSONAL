@@ -87,6 +87,14 @@ namespace Test_of_increace
                         selectionType = "X";
                     }
                 }
+                else if (keyinfo.Key == ConsoleKey.Enter)
+                {
+                    selectionType = "E";
+                }
+                else if (keyinfo.Key == ConsoleKey.Backspace)
+                {
+                    selectionType = "D";
+                }
 
                 for (int i = 0; i <= 11; i++)
                 {
