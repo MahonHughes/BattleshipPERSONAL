@@ -54,7 +54,7 @@ namespace Test_of_increace
                 //Console.WriteLine(keyinfo.Key);
                 if (keyinfo.Key == ConsoleKey.UpArrow)
                 {
-                    //Console.WriteLine("Up");
+                    Console.WriteLine("Up");
                     if (currentSelection[1] >= 1){
                         currentSelection[1] = currentSelection[1] - 1;
                         selectionType = "X";
