@@ -33,6 +33,14 @@ namespace Test_of_increace
             return Number;
         }
 
+        static void notPlacable()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Sorry, this ship can't be placed here.");
+            Console.ReadKey();
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         static void addShips(int size, string[,] hitMatrix, string[,] selectMatrix)
         {
             //size = safeIntInput("Enter Size: ");
@@ -41,9 +49,10 @@ namespace Test_of_increace
             currentSelection[0] = 5;
             currentSelection[1] = 5;
             string selectionType = "X";
+            int numberOfBotes = 5;
+
             while (true)
             {
-
                 selectMatrix[currentSelection[0], currentSelection[1]] = selectionType;
 
                 BuildAll(12, hitMatrix, selectMatrix);
@@ -54,15 +63,14 @@ namespace Test_of_increace
                 //Console.WriteLine(keyinfo.Key);
                 if (keyinfo.Key == ConsoleKey.UpArrow)
                 {
-                    Console.WriteLine("Up");
-                    if (currentSelection[1] >= 1){
+                    if (currentSelection[1] >= 1)
+                    {
                         currentSelection[1] = currentSelection[1] - 1;
                         selectionType = "X";
                     }
                 }
                 else if (keyinfo.Key == ConsoleKey.DownArrow)
                 {
-                    Console.WriteLine("Down");
                     if (currentSelection[1] < size - 1)
                     {
                         currentSelection[1] = currentSelection[1] + 1;
@@ -71,7 +79,6 @@ namespace Test_of_increace
                 }
                 else if (keyinfo.Key == ConsoleKey.LeftArrow)
                 {
-                    Console.WriteLine("Left");
                     if (currentSelection[0] > 0)
                     {
                         currentSelection[0] = currentSelection[0] - 1;
@@ -80,7 +87,6 @@ namespace Test_of_increace
                 }
                 else if (keyinfo.Key == ConsoleKey.RightArrow)
                 {
-                    Console.WriteLine("Right");
                     if (currentSelection[0] < size - 1)
                     {
                         currentSelection[0] = currentSelection[0] + 1;
@@ -91,7 +97,15 @@ namespace Test_of_increace
                 {
                     int length = 5;
                     selectionType = "E";
-                    addShip(size, hitMatrix, selectMatrix, length, currentSelection);
+                    if (hitMatrix[currentSelection[0], currentSelection[1]] == "X")
+                    {
+                        notPlacable();
+                    }
+                    else
+                    {
+                        addShip(size, hitMatrix, selectMatrix, length, currentSelection);
+                    }
+                    selectionType = "X";
                 }
                 else if (keyinfo.Key == ConsoleKey.Backspace)
                 {
@@ -233,51 +247,157 @@ namespace Test_of_increace
             //Console.ReadLine();
         }
 
-        static void addShip(int size, string[,] hitMatrix, string[,] selectMatrix, int length)
-        {
-
-            int[] currentSelection = new int[2];
-            currentSelection[0] = 5;
-            currentSelection[1] = 5;
+        static void addShip(int size, string[,] hitMatrix, string[,] selectMatrix, int length, int[] currentSelection)
+        { 
             string selectionType = "X";
+
+            BuildAll(12, hitMatrix, selectMatrix);
 
             ConsoleKeyInfo keyinfo;
             keyinfo = Console.ReadKey();
 
             if (keyinfo.Key == ConsoleKey.UpArrow)
             {
-                Console.WriteLine("Up");
-                if (currentSelection[1] >= 1)
+                bool isPlacable = true;
+                for (var a = 0; a < length; a++)
                 {
-                    currentSelection[1] = currentSelection[1] - 1;
-                    selectionType = "X";
+                    if ((currentSelection[1] - a) < 0)
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+                    else if (hitMatrix[currentSelection[0], currentSelection[1] - a] == "X")
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+                    
                 }
-            }
+                if (isPlacable){
+                    for (var a = 0; a < length; a++)
+                    {
+                        {
+                            hitMatrix[currentSelection[0], currentSelection[1] - a] = "X";
+                        }
+                    }
+                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    hitMatrix[currentSelection[0], currentSelection[1]] = "X";
+                }
+                else
+                {
+                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    notPlacable();
+                }
+            }  
             else if (keyinfo.Key == ConsoleKey.DownArrow)
             {
-                Console.WriteLine("Down");
-                if (currentSelection[1] < size - 1)
+                bool isPlacable = true;
+                for (var a = 0; a < length; a++)
                 {
-                    currentSelection[1] = currentSelection[1] + 1;
-                    selectionType = "X";
+                    if ((currentSelection[1] + a) > size)
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+                    else if (hitMatrix[currentSelection[0], currentSelection[1] + a] == "X")
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+
+                }
+                if (isPlacable)
+                {
+                    for (var a = 0; a < length; a++)
+                    {
+                        {
+                            hitMatrix[currentSelection[0], currentSelection[1] + a] = "X";
+                        }
+                    }
+                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    hitMatrix[currentSelection[0], currentSelection[1]] = "X";
+                }
+                else
+                {
+                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    notPlacable();
                 }
             }
             else if (keyinfo.Key == ConsoleKey.LeftArrow)
             {
-                Console.WriteLine("Left");
-                if (currentSelection[0] > 0)
+                
+                bool isPlacable = true;
+                for (var a = 0; a < length; a++)
                 {
-                    currentSelection[0] = currentSelection[0] - 1;
-                    selectionType = "X";
+                    if ((currentSelection[0] - a) > size)
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+                    else if (hitMatrix[currentSelection[0] - a, currentSelection[1]] == "X")
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+
                 }
+                if (isPlacable)
+                {
+                    for (var a = 0; a < length; a++)
+                    {
+                        {
+                            hitMatrix[currentSelection[0] - a, currentSelection[1]] = "X";
+                        }
+                    }
+                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    hitMatrix[currentSelection[0], currentSelection[1]] = "X";
+                }
+                else
+                {
+                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    notPlacable();
+                }
+
+
+
+
             }
             else if (keyinfo.Key == ConsoleKey.RightArrow)
             {
-                Console.WriteLine("Right");
-                if (currentSelection[0] < size - 1)
+                bool isPlacable = true;
+                for (var a = 0; a < length; a++)
                 {
-                    currentSelection[0] = currentSelection[0] + 1;
-                    selectionType = "X";
+                    if ((currentSelection[0] + a) > size)
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+                    else if (hitMatrix[currentSelection[0] + a, currentSelection[1]] == "X")
+                    {
+                        a = length;
+                        isPlacable = false;
+                    }
+
+                }
+                if (isPlacable)
+                {
+                    for (var a = 0; a < length; a++)
+                    {
+                        {
+                            hitMatrix[currentSelection[0] + a, currentSelection[1]] = "X";
+                        }
+                    }
+                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    hitMatrix[currentSelection[0], currentSelection[1]] = "X";
+                }
+                else
+                {
+                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    notPlacable();
                 }
             }
 
