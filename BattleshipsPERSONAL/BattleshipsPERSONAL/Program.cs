@@ -36,11 +36,11 @@ namespace Test_of_increace
         static void notPlacable()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Sorry, this ship can't be placed here.");
-            Console.ReadKey();
+            //Console.WriteLine("Sorry, this ship can't be placed here.");
+            //Console.ReadKey();
             Console.ForegroundColor = ConsoleColor.White;
         }
-
+        /*
         static void addShips(int size, string[,] hitMatrix, string[,] selectMatrix)
         {
             //size = safeIntInput("Enter Size: ");
@@ -123,7 +123,7 @@ namespace Test_of_increace
             }
 
         }
-
+        */
         static void BuildAll(int size, string[,] hitMatrix, string[,] selectMatrix)
         {
             ConsoleColor[,] textColorMatrix = new ConsoleColor[size, size];
@@ -247,18 +247,18 @@ namespace Test_of_increace
             //Console.ReadLine();
         }
 
-        static void addShip(int size, string[,] hitMatrix, string[,] selectMatrix, int length, int[] currentSelection)
+        static bool addShip(int size, string[,] hitMatrix, string[,] selectMatrix, int length, int[] currentSelection, int direction)
         { 
             string selectionType = "X";
 
             BuildAll(12, hitMatrix, selectMatrix);
 
-            ConsoleKeyInfo keyinfo;
-            keyinfo = Console.ReadKey();
-
-            if (keyinfo.Key == ConsoleKey.UpArrow)
+            //ConsoleKeyInfo keyinfo;
+            //keyinfo = Console.ReadKey();
+            bool isPlacable = true;
+            if (direction == 1)
             {
-                bool isPlacable = true;
+                isPlacable = true;
                 for (var a = 0; a < length; a++)
                 {
                     if ((currentSelection[1] - a) < 0)
@@ -280,22 +280,22 @@ namespace Test_of_increace
                             hitMatrix[currentSelection[0], currentSelection[1] - a] = "X";
                         }
                     }
-                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    //selectMatrix[currentSelection[0], currentSelection[1]] = "X";
                     hitMatrix[currentSelection[0], currentSelection[1]] = "X";
                 }
                 else
                 {
-                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    //selectMatrix[currentSelection[0], currentSelection[1]] = " ";
                     //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
                     notPlacable();
                 }
             }  
-            else if (keyinfo.Key == ConsoleKey.DownArrow)
+            else if (direction == 2)
             {
-                bool isPlacable = true;
+                isPlacable = true;
                 for (var a = 0; a < length; a++)
                 {
-                    if ((currentSelection[1] + a) > size)
+                    if ((currentSelection[1] + a) > size - 1)
                     {
                         a = length;
                         isPlacable = false;
@@ -315,23 +315,23 @@ namespace Test_of_increace
                             hitMatrix[currentSelection[0], currentSelection[1] + a] = "X";
                         }
                     }
-                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    //selectMatrix[currentSelection[0], currentSelection[1]] = "X";
                     hitMatrix[currentSelection[0], currentSelection[1]] = "X";
                 }
                 else
                 {
-                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                    //selectMatrix[currentSelection[0], currentSelection[1]] = " ";
                     //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
                     notPlacable();
                 }
             }
-            else if (keyinfo.Key == ConsoleKey.LeftArrow)
+            else if (direction == 3)
             {
                 
-                bool isPlacable = true;
+                isPlacable = true;
                 for (var a = 0; a < length; a++)
                 {
-                    if ((currentSelection[0] - a) > size)
+                    if ((currentSelection[0] - a) > size - 1)
                     {
                         a = length;
                         isPlacable = false;
@@ -351,23 +351,29 @@ namespace Test_of_increace
                             hitMatrix[currentSelection[0] - a, currentSelection[1]] = "X";
                         }
                     }
-                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    //selectMatrix[currentSelection[0], currentSelection[1]] = "X";
                     hitMatrix[currentSelection[0], currentSelection[1]] = "X";
                 }
                 else
                 {
-                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                   // selectMatrix[currentSelection[0], currentSelection[1]] = " ";
                     //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
                     notPlacable();
                 }
 
 
-
+                for (int i = 0; i <= 11; i++)
+                {
+                    for (int j = 0; j <= 11; j++)
+                    {
+                        selectMatrix[i, j] = "O";
+                    }
+                }
 
             }
-            else if (keyinfo.Key == ConsoleKey.RightArrow)
+            else if (direction == 4)
             {
-                bool isPlacable = true;
+                isPlacable = true;
                 for (var a = 0; a < length; a++)
                 {
                     if ((currentSelection[0] + a) > size)
@@ -390,19 +396,19 @@ namespace Test_of_increace
                             hitMatrix[currentSelection[0] + a, currentSelection[1]] = "X";
                         }
                     }
-                    selectMatrix[currentSelection[0], currentSelection[1]] = "X";
+                    //selectMatrix[currentSelection[0], currentSelection[1]] = "X";
                     hitMatrix[currentSelection[0], currentSelection[1]] = "X";
                 }
                 else
                 {
-                    selectMatrix[currentSelection[0], currentSelection[1]] = " ";
+                   // selectMatrix[currentSelection[0], currentSelection[1]] = " ";
                     //hitMatrix[currentSelection[0], currentSelection[1]] = " ";
                     notPlacable();
                 }
             }
 
             BuildAll(size, hitMatrix, selectMatrix);
-
+            return isPlacable;
         }
 
         static void addMatix(int size, int numberOfBotes)
@@ -419,6 +425,45 @@ namespace Test_of_increace
            
         }
 
+        static void populate(string[,] hitMatrix, string[,] selectMatrix, int size)
+        {
+            ConsoleColor [,]
+            textColorMatrix = new ConsoleColor[size, size];
+            ConsoleColor[,] backColorMatrix = new ConsoleColor[size, size];
+
+            for (int i = 0; i <= 11; i++)
+            {
+                for (int j = 0; j <= 11; j++)
+                {
+                    textColorMatrix[i, j] = ConsoleColor.White;
+                    backColorMatrix[i, j] = ConsoleColor.Black;
+                }
+}
+            for (int i = 0; i <= 11; i++)
+            {
+                for (int j = 0; j <= 11; j++)
+                {
+                    if (selectMatrix[i, j] == "X")
+                    {
+                        textColorMatrix[i, j] = ConsoleColor.Blue;
+                        backColorMatrix[i, j] = ConsoleColor.White;
+                    }
+                    else if (selectMatrix[i, j] == "E")
+                    {
+                        textColorMatrix[i, j] = ConsoleColor.White;
+                        backColorMatrix[i, j] = ConsoleColor.DarkBlue;
+                        hitMatrix[i, j] = "#";
+                    }
+                    else if (selectMatrix[i, j] == "D")
+                    {
+                        textColorMatrix[i, j] = ConsoleColor.White;
+                        backColorMatrix[i, j] = ConsoleColor.DarkRed;
+                        hitMatrix[i, j] = " ";
+                    }
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
             int size = 12;
@@ -433,11 +478,32 @@ namespace Test_of_increace
                     hitMatrix[i, j] = " ";
                 }
             }
+            int numberofbotes = 4;
+            int length = 3;
+            for (int a = 0; a < numberofbotes; a++)
+            {
+                Random generator = new Random();
+            int rand = generator.Next(1, 12);
 
+            Random generator2 = new Random();
+            int rand2 = generator.Next(1, 12);
+
+            int[] currentSelection = new int[2];
+            currentSelection[0] = rand;
+            currentSelection[1] = rand2;
+
+            Random generator3 = new Random();
+            int rand3 = generator.Next(1, 4);
+            //selectMatrix[currentSelection[0], currentSelection[1]] = "E";
+            //populate(hitMatrix, selectMatrix, size);
 
             
-            
-            addShips(size, hitMatrix, selectMatrix);
+                addShip(size, hitMatrix, selectMatrix, length, currentSelection, rand3);
+                BuildAll(12, hitMatrix, selectMatrix);
+            }
+
+
+            //addShips(size, hitMatrix, selectMatrix);
             Console.Read();
         }
     }
